@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+    db:
+        image: postgres:latest
+        container_name: random_coffee_postgres
+        environment:
+            POSTGRES_USER: postgresusr
+            POSTGRES_PASSWORD: postgrespwd
+            POSTGRES_DB: random_coffee_postgres
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+    app:
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+
+volumes:
+    postgres_data:
